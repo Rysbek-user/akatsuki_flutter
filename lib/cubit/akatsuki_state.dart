@@ -11,5 +11,4 @@ final class AkatsukiDataSuccess extends AkatsukiState {
   final List<AkatsukiInfo> list;
 
   AkatsukiDataSuccess({required this.list});
-
 }

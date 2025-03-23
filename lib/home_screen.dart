@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'cubit/akatsuki_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,16 +17,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Akatsuki List'),
-        ),
+        appBar: AppBar(title: const Text('Akatsuki List')),
         body: BlocBuilder<AkatsukiCubit, AkatsukiState>(
           bloc: cubit,
           builder: (context, state) {
             if (state is AkatsukiDataSuccess) {
               return ListView.separated(
                 itemCount: state.list.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 16),
+                separatorBuilder:
+                    (context, index) => const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   final akatsuki = state.list[index];
                   return Column(
@@ -34,13 +33,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       akatsuki.images.isNotEmpty
                           ? Image.network(
-                        akatsuki.images.first,
-                        width: 200,
-                        height: 200,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                        const Icon(Icons.error, size: 100),
-                      )
+                            akatsuki.images.first,
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.cover,
+                            errorBuilder:
+                                (context, error, stackTrace) =>
+                                    const Icon(Icons.error, size: 100),
+                          )
                           : const Icon(Icons.image_not_supported, size: 100),
                       const SizedBox(height: 8),
                       Text(
